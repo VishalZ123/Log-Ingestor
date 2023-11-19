@@ -5,7 +5,7 @@ def match_query(filter_kwargs):
     keyword = filter_kwargs.pop('message', None)
     if keyword:
             filter_kwargs['message__icontains'] = keyword
-
+    
     metadata = filter_kwargs.pop('metadata', None)
     if metadata:
         for key, value in metadata.items():

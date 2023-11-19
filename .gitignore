@@ -1,5 +1,6 @@
 db.sqlite3
-*.bat
+req.bat
+request.bat
 **/__pycache__/
 *.env
 **node_modules/

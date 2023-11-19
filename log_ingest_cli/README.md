@@ -112,3 +112,5 @@ log_ingest --help
 
 ## License
 [ISC](https://choosealicense.com/licenses/isc/)
+
+---
