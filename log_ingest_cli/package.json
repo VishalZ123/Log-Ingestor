@@ -1,0 +1,20 @@
+{
+  "name": "log_ingest",
+  "version": "1.0.5",
+  "description": "A tool to ingest log data and query them",
+  "main": "./bin/index.js",
+  "scripts": {
+    "test": "log_ingest"
+  },
+  "author": "Vishal",
+  "license": "ISC",
+  "bin": {
+    "log_ingest": "./bin/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cli-table": "^0.3.11",
+    "dotenv": "^16.3.1",
+    "yargs": "^17.7.2"
+  }
+}

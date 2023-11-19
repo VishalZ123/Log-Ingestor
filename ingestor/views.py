@@ -1,4 +1,3 @@
-# log_ingestor/views.py
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -14,7 +13,6 @@ from ingestor.utils import match_query
 def ingest_logs(request):
     try:
         data = json.loads(request.body.decode('utf-8'))
-        
         def process_log(log_data):
             log_entry = LogEntry(
                 level=log_data['level'],
@@ -33,9 +31,10 @@ def ingest_logs(request):
         with ThreadPoolExecutor() as executor:
             executor.map(process_log, logs)
 
-        return JsonResponse({'status': 'success'})
+        return JsonResponse({'status': 'success'}, status=201)
     except Exception as e:
-        return JsonResponse({'status': 'error', 'error_message': str(e)})
+        return JsonResponse({'status': 'error', 'error_message': str(e)}, status=400)
+
 
 # api to query logs
 @require_GET
@@ -54,11 +53,11 @@ def query_logs(request):
         return JsonResponse({'status': 'error', 'error_message': str(e)})
 
 # api to clear all the database : dev purpose
-@csrf_exempt
-@require_POST
-def clear_logs(request):
-    try:
-        LogEntry.objects.all().delete()
-        return JsonResponse({'status': 'success'})
-    except Exception as e:
-        return JsonResponse({'status': 'error', 'error_message': str(e)})
+# @csrf_exempt
+# @require_POST
+# def clear_logs(request):
+#     try:
+#         LogEntry.objects.all().delete()
+#         return JsonResponse({'status': 'success'})
+#     except Exception as e:
+#         return JsonResponse({'status': 'error', 'error_message': str(e)})
